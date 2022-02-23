@@ -1,7 +1,7 @@
 import { useQuery, gql } from '@apollo/client';
 
 import { IUser } from './types';
-import UsersList from './UsersList';
+import UsersList from './components/UsersList';
 import './App.css';
 
 interface IUsersListData {

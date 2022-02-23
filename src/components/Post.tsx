@@ -1,4 +1,4 @@
-import { IPost } from './types';
+import { IPost } from '../types';
 
 export default function Post({ post }: { post: IPost }): JSX.Element {
   return (

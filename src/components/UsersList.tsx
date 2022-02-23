@@ -1,4 +1,4 @@
-import { IUser } from './types';
+import { IUser } from '../types';
 import UserPosts from './UserPosts';
 
 export default function UsersList({ users }: { users: IUser[] }): JSX.Element {

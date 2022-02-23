@@ -1,4 +1,4 @@
-import { IPost } from './types';
+import { IPost } from '../types';
 import Post from './Post';
 
 export default function UserPosts({ posts }: { posts: IPost[] }): JSX.Element {
