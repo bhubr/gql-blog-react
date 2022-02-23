@@ -8,7 +8,7 @@ function App(): JSX.Element {
 
   return (
     <div className="App">
-      <h1>GraohQL Blog</h1>
+      <h1>GraphQL Blog</h1>
       <p>Load a lot of nested data</p>
       {error && <p>Error while fetching: {error?.message}</p>}
       {loading && <p>Loading data</p>}
