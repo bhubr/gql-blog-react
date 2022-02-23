@@ -1,36 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import { apiUrl } from './settings';
+import { useQuery, gql } from '@apollo/client';
+
+import { IUser } from './types';
+import UsersList from './UsersList';
 import './App.css';
 
-function App(): JSX.Element {
-  const [message, setMessage] = useState(null);
-  const [error, setError] = useState<Error | null>(null);
+interface IUsersListData {
+  users: IUser[];
+}
 
-  useEffect(() => {
-    const fetchMessage = async () => {
-      try {
-        const res = await fetch(`${apiUrl}/dummy-endpoint`);
-        if (!res.ok) {
-          throw new Error(res.statusText);
-        }
-        const data = await res.json();
-        setMessage(data.message);
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err);
-        } else {
-          setError(new Error('Unknown error'));
+const GET_USERS_POSTS = gql`
+  query Users {
+    users {
+      id
+      name
+      posts {
+        id
+        title
+        comments {
+          id
+          text
+          author {
+            name
+            avatarUrl
+          }
         }
       }
-    };
+      avatarUrl
+    }
+  }
+`;
 
-    fetchMessage();
-  });
+function App(): JSX.Element {
+  const { loading, error, data } = useQuery<IUsersListData>(GET_USERS_POSTS);
+
   return (
     <div className="App">
-      <h1>React template</h1>
-      {message && <p>Message received from server: {message}</p>}
+      <h1>GraohQL Blog</h1>
+      <p>Load a lot of nested data</p>
       {error && <p>Error while fetching: {error?.message}</p>}
+      {loading && <p>Loading data</p>}
+      {data && <UsersList users={data.users} />}
     </div>
   );
 }
