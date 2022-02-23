@@ -1,6 +1,7 @@
 import { User, useUsersQuery } from './generated';
 import UsersList from './components/UsersList';
 import './App.css';
+import './style.css';
 
 function App(): JSX.Element {
   const { loading, error, data } = useUsersQuery();

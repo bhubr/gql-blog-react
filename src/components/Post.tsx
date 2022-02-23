@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Post as IPost } from '../generated';
+import Comment from './Comment';
 
 export default function Post({ post }: { post: IPost }): JSX.Element {
   return (
@@ -16,7 +17,7 @@ export default function Post({ post }: { post: IPost }): JSX.Element {
                 alt={c.author?.name!}
               />
             )}
-            {c.text}
+            <Comment comment={c} />
           </li>
         ))}
       </ul>

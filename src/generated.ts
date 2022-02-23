@@ -1934,12 +1934,55 @@ export type UserWhereUniqueInput = {
   id?: InputMaybe<Scalars['Int']>;
 };
 
+export type UpdateCommentMutationVariables = Exact<{
+  data: CommentUpdateInput;
+  where: CommentWhereUniqueInput;
+}>;
+
+
+export type UpdateCommentMutation = { __typename?: 'Mutation', updateComment?: { __typename?: 'Comment', id: number, text: string } | null };
+
 export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type UsersQuery = { __typename?: 'Query', users: Array<{ __typename?: 'User', id: number, name?: string | null, avatarUrl?: string | null, posts: Array<{ __typename?: 'Post', id: number, title: string, comments: Array<{ __typename?: 'Comment', id: number, text: string, author?: { __typename?: 'User', name?: string | null, avatarUrl?: string | null } | null }> }> }> };
 
 
+export const UpdateCommentDocument = gql`
+    mutation UpdateComment($data: CommentUpdateInput!, $where: CommentWhereUniqueInput!) {
+  updateComment(data: $data, where: $where) {
+    id
+    text
+  }
+}
+    `;
+export type UpdateCommentMutationFn = Apollo.MutationFunction<UpdateCommentMutation, UpdateCommentMutationVariables>;
+
+/**
+ * __useUpdateCommentMutation__
+ *
+ * To run a mutation, you first call `useUpdateCommentMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateCommentMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateCommentMutation, { data, loading, error }] = useUpdateCommentMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useUpdateCommentMutation(baseOptions?: Apollo.MutationHookOptions<UpdateCommentMutation, UpdateCommentMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateCommentMutation, UpdateCommentMutationVariables>(UpdateCommentDocument, options);
+      }
+export type UpdateCommentMutationHookResult = ReturnType<typeof useUpdateCommentMutation>;
+export type UpdateCommentMutationResult = Apollo.MutationResult<UpdateCommentMutation>;
+export type UpdateCommentMutationOptions = Apollo.BaseMutationOptions<UpdateCommentMutation, UpdateCommentMutationVariables>;
 export const UsersDocument = gql`
     query Users {
   users {

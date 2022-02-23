@@ -1,0 +1,6 @@
+mutation UpdateComment($data: CommentUpdateInput!, $where: CommentWhereUniqueInput!) {
+  updateComment(data: $data, where: $where) {
+    id
+    text
+  }
+}
