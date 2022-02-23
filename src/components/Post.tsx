@@ -1,4 +1,6 @@
-import { IPost } from '../types';
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { Post as IPost } from '../generated';
 
 export default function Post({ post }: { post: IPost }): JSX.Element {
   return (
@@ -7,11 +9,13 @@ export default function Post({ post }: { post: IPost }): JSX.Element {
       <ul>
         {post.comments.map((c) => (
           <li key={c.id}>
-            <img
-              style={{ maxWidth: 20, borderRadius: '50%' }}
-              src={c.author.avatarUrl}
-              alt={c.author.name}
-            />
+            {c.author && (
+              <img
+                style={{ maxWidth: 20, borderRadius: '50%' }}
+                src={c.author?.avatarUrl!}
+                alt={c.author?.name!}
+              />
+            )}
             {c.text}
           </li>
         ))}

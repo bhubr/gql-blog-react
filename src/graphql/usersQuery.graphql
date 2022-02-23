@@ -1,0 +1,21 @@
+# usersQuery.graphql
+
+query Users {
+  users {
+    id
+    name
+    posts {
+      id
+      title
+      comments {
+        id
+        text
+        author {
+          name
+          avatarUrl
+        }
+      }
+    }
+    avatarUrl
+  }
+}
